@@ -224,3 +224,8 @@ func (c *mockDriverClient) StopSequencer(ctx context.Context) (common.Hash, erro
 func (c *mockDriverClient) SequencerActive(ctx context.Context) (bool, error) {
 	return c.Mock.MethodCalled("SequencerActive").Get(0).(bool), nil
 }
+
+func (c *mockDriverClient) OnUnsafeL2Payload(ctx context.Context, payload *eth.ExecutionPayload) error {
+	c.Mock.MethodCalled("OnUnsafeL2Payload", payload).Get(0)
+	return nil
+}
